@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 import uvicorn
 from database.db import create_tables
+from routes.client import routes_client
 
 
 app = FastAPI(title="Backend BTG - Swagger UI", version="0.1")
@@ -14,11 +15,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.exception_handler(404)
 def not_found(request, exc):
     return JSONResponse(status_code=404, content={"message": "Not Found"})
 
-app = FastAPI()
+
+app.include_router(routes_client, prefix="/client")
 
 create_tables()
 
