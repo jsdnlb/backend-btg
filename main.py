@@ -4,6 +4,7 @@ from fastapi.responses import JSONResponse
 import uvicorn
 from database.db import create_tables
 from routes.client import routes_client
+from routes.fund import routes_fund
 
 
 app = FastAPI(title="Backend BTG - Swagger UI", version="0.1")
@@ -22,6 +23,7 @@ def not_found(request, exc):
 
 
 app.include_router(routes_client, prefix="/client")
+app.include_router(routes_fund, prefix="/fund")
 
 create_tables()
 
