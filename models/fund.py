@@ -19,3 +19,16 @@ class Fund(FundBase):
 
     class Config:
         from_attributes = True
+
+
+class Subscription(BaseModel):
+    client_id: str
+    fund_id: str
+    amount: Decimal
+    notification: str  # 'Email' or 'SMS'
+
+
+class Cancellation(BaseModel):
+    client_id: str
+    transaction_id: str
+    notification: str  # 'Email' or 'SMS'

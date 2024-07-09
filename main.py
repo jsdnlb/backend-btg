@@ -18,9 +18,9 @@ app.add_middleware(
 )
 
 
-@app.exception_handler(404)
+""" @app.exception_handler(404)
 def not_found(request, exc):
-    return JSONResponse(status_code=404, content={"message": "Not Found"})
+    return JSONResponse(status_code=404, content={"message": "Not Found"}) """
 
 
 app.include_router(routes_client, prefix="/client")

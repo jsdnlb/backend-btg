@@ -1,6 +1,10 @@
 from fastapi import APIRouter
 
-from controllers.transaction import create_transaction, get_transaction, get_transactions
+from controllers.transaction import (
+    create_transaction,
+    get_transaction,
+    get_transactions,
+)
 from models.transaction import Transaction, TransactionCreate
 
 
