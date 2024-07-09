@@ -8,8 +8,8 @@ routes_fund = APIRouter()
 
 
 @routes_fund.post("/create", response_model=Fund)
-def create(user: FundCreate):
-    return create_fund(user.dict())
+def create(fund: FundCreate):
+    return create_fund(fund.dict())
 
 
 @routes_fund.get("/get/{id}")
