@@ -10,8 +10,13 @@ from routes.transaction import routes_transaction
 
 app = FastAPI(title="Backend BTG - Swagger UI", version="0.1")
 
+origins = [
+    "http://frontend-btg-challenge-bucket.s3-website-us-east-1.amazonaws.com/",
+]
+
 app.add_middleware(
     CORSMiddleware,
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -23,11 +28,11 @@ def not_found(request, exc):
     return JSONResponse(status_code=404, content={"message": "Not Found"}) """
 
 
-app.include_router(routes_client, prefix="/client")
-app.include_router(routes_fund, prefix="/fund")
-app.include_router(routes_transaction, prefix="/transaction")
+app.include_router(routes_client, prefix="/clients")
+app.include_router(routes_fund, prefix="/funds")
+app.include_router(routes_transaction, prefix="/transactions")
 
 create_tables()
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run(app, host="0.0.0.0", port=80, reload=True)
